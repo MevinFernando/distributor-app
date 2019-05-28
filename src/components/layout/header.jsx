@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 //use Link instead of "a" tag in JSX
 
 // "/about" route is mentione in App.js

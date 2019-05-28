@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ReturnItem from "./returnItem";
-import axios from "axios"; //to contact with API
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:5000" || process.env.baseURL;
 
 class Returns extends Component {
   state = {
@@ -9,27 +9,37 @@ class Returns extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://hulrevlog.herokuapp.com/api/returns").then(res => {
+    axios.get("/api/returns").then(res => {
       console.log(res.data);
       this.setState({ returns: res.data });
     });
   }
 
-  displayReturnItem = id => {
-    return;
+  compareBy = key => (a, b) => {
+    if (a[key] < b[key]) return -1;
+    if (a[key] > b[key]) return 1;
+    return 0;
+  };
+
+  sortBy = key => {
+    let arrayCopy = [...this.state.returns];
+    arrayCopy.sort(this.compareBy(key));
+    this.setState({ returns: arrayCopy });
   };
 
   render() {
     return (
-      <Router>
-        <div className="container">
-          <table className="table table-hover">
+      <div className="container">
+        <table className="table table-hover">
+          <thead>
             <tr>
-              <th>Return Id</th>
-              <th>Retailer Name</th>
-              <th>Status</th>
+              <th onClick={() => this.sortBy("returnId")}>Return Id</th>
+              <th onClick={() => this.sortBy("retailerId")}>Retailer Name</th>
+              <th onClick={() => this.sortBy("returnIem")}>Status</th>
               <th />
             </tr>
+          </thead>
+          <tbody>
             {this.state.returns.map(returnItem => (
               <tr>
                 <td>{returnItem.returnId}</td>
@@ -37,14 +47,18 @@ class Returns extends Component {
                 <td>{returnItem.status[0].description}</td>
                 <td>
                   {" "}
-                  <a href={"/returnItem/" + returnItem.returnId}>View More</a>
+                  <a
+                    className="btn btn-primary"
+                    href={"/returnItem/" + returnItem.returnId}
+                  >
+                    View More
+                  </a>
                 </td>
               </tr>
             ))}
-          </table>
-        </div>
-        <Route exact path="/returnItem/:returnId" component={ReturnItem} />
-      </Router>
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

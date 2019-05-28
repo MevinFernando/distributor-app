@@ -13,16 +13,18 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <div className="contianer">
-          <Header />
-          <Switch>
-            <Route exact path="/returns" component={Returns} />
-            <Route exact path="/about" component={About} />
-            <Route path="/returnItem/:returnId" component={ReturnItem} />
-            <Route path="/" component={Home} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
+        <Header />
+        <Switch>
+          <Route exact path="/returns" component={Returns} />
+          <Route exact path="/about" component={About} />
+          <Route
+            path="/returnItem/:returnId"
+            render={props => <ReturnItem {...props} isAuthed={true} />}
+          />
+          {/* <Route path="/returnItem/:returnId" component={ReturnItem} /> */}
+          <Route path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
       </Router>
     </React.Fragment>
   );
