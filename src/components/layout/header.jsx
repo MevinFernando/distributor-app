@@ -10,18 +10,23 @@ function Header() {
       <h1>Distributor Portal</h1>
       <Link style={linkStyle} to="/">
         Home
-      </Link>
+      </Link>{" "}
       |{" "}
       <Link style={linkStyle} to="/about">
         About
-      </Link>
+      </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/returns">
+      <a style={linkStyle} href="/returns">
         Returns
+      </a>{" "}
+      |{" "}
+      <Link style={linkStyle} to="/stocks">
+        Stocks
       </Link>
     </header>
   );
 }
+
 const headerStyle = {
   backgroundColor: "#333",
   color: "#fff",

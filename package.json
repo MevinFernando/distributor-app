@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "file-saver": "^2.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -32,5 +33,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://locahost:5000"
+  "proxy": "https://127.0.0.1:5000"
 }
