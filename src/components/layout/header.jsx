@@ -20,13 +20,17 @@ function Header() {
         Returns
       </a>{" "}
       |{" "}
-      <Link style={linkStyle} to="/stocks">
-        Stocks
-      </Link>{" "}
+      <a style={linkStyle} href="/pickups">
+        Pickups
+      </a>{" "}
       |{" "}
-      <Link style={linkStyle} to="/claims">
+      <a style={linkStyle} href="/stocks">
+        Stocks
+      </a>{" "}
+      |{" "}
+      <a style={linkStyle} href="/claims">
         Claims
-      </Link>
+      </a>{" "}
     </header>
   );
 }

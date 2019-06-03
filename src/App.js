@@ -13,6 +13,7 @@ import Stocks from "./components/stocks";
 import LoginForm from "./components/loginForm";
 import NewClaim from "./components/newClaim";
 import Claims from "./components/claims";
+import Pickups from "./components/pickups";
 
 //axios.defaults.baseURL ="http://localhost:5000" || "http://hulrevlog.herokuapp.com";
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/stocks" component={Stocks} />
           <Route path="/returnItem/:returnId" component={ReturnItem} />
           <Route exact path="/claims" component={Claims} />
+          <Route exact path="/pickups" component={Pickups} />
           <Route path="/claims/new" component={NewClaim} />
           <Route path="/" component={LoginForm} />
           <Route component={NotFound} />

@@ -35,7 +35,7 @@ class Claims extends Component {
               <h4 className="card-title">Status:</h4>
               {this.setStatusLabel()}
               <h4 className="card-title">Value:</h4>
-              {claims.value}
+              {parseFloat(claims.value).toFixed(2)}
             </div>
           </div>
         </div>

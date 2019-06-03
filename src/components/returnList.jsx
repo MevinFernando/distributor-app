@@ -8,18 +8,18 @@ class ReturnList extends Component {
   render() {
     console.log(this.props);
     const { returns, sortBy } = this.props;
+
     return (
       <div className="container">
         <div className="card-header">
           <h3 className="mb-0">Active Returns</h3>
         </div>
-
         <table className="table table-hover">
           <thead>
             <tr>
               <th onClick={() => sortBy("returnId")}>Return Id</th>
               <th onClick={() => sortBy("retailerId")}>Retailer Name</th>
-              <th onClick={() => sortBy("returnIem")}>Status</th>
+              <th onClick={() => sortBy("status")}>Status</th>
               <th />
             </tr>
           </thead>

@@ -6,7 +6,7 @@ class StocksList extends Component {
   componentDidMount() {}
 
   render() {
-    const { stocks, sortBy, handleClaim } = this.props;
+    const { stocks, sortBy } = this.props;
 
     var weight = 0;
     var value = 0;
@@ -18,7 +18,8 @@ class StocksList extends Component {
       if (stocks[i].reason === "damaged")
         damagedValue = damagedValue + stocks[i].qty * stocks[i].mrp;
     }
-
+    value.toFixed(2);
+    damagedValue.toFixed(2);
     return (
       <div className="container">
         <div className="card-header">
@@ -44,9 +45,7 @@ class StocksList extends Component {
               <tr>
                 <td>{stockItem.id}</td>
                 <td>{stockItem.name}</td>
-                <td>
-                  {stockItem.pkd.slice(4, 7)}/{stockItem.pkd.slice(11, 16)}
-                </td>
+                <td>{stockItem.pkd}</td>
                 <td>{stockItem.mrp}</td>
                 <td>{stockItem.tur}</td>
                 <td>{stockItem.reason}</td>
@@ -73,7 +72,13 @@ class StocksList extends Component {
             <span>Rs.</span>
             {value}
           </h5>
-          <a href="/claims/new">Claim</a>
+          <a
+            className="btn btn-primary"
+            style={{ textDecoration: "none" }}
+            href="/claims/new"
+          >
+            Claim
+          </a>
           {/* <button onClick={() => handleClaim()}>Claim</button> */}
         </div>
       </div>
