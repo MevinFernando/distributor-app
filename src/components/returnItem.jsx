@@ -14,8 +14,7 @@ class ReturnItem extends Component {
   }
 
   setButtonLabel(code) {
-    //console.log(this.state.status);
-
+    console.log(code);
     if (code === "10") {
       return "Schedule Pickup";
     } else if (code === "20") {
@@ -41,10 +40,6 @@ class ReturnItem extends Component {
           {returnItem.retailerName}
         </h4>
         <h4>
-          <span className="text-muted">Category:</span>
-          {returnItem.category}
-        </h4>
-        <h4>
           <span className="text-muted">Items</span>
         </h4>
         <table className="table table-hover">
@@ -61,7 +56,7 @@ class ReturnItem extends Component {
             {returnItem.items.map(item => (
               <tr>
                 <td>{item.name}</td>
-                <td>{item.pkd.slice(0, 16)}</td>
+                <td>{item.pkd}</td>
                 <td>{item.mrp}</td>
                 <td>{item.qty}</td>
                 <td>{item.reason}</td>

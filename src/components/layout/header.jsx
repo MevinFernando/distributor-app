@@ -22,6 +22,10 @@ function Header() {
       |{" "}
       <Link style={linkStyle} to="/stocks">
         Stocks
+      </Link>{" "}
+      |{" "}
+      <Link style={linkStyle} to="/claims">
+        Claims
       </Link>
     </header>
   );

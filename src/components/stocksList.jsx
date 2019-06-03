@@ -35,14 +35,13 @@ class StocksList extends Component {
               <th onClick={() => sortBy("reason")}>Reason</th>
               <th onClick={() => sortBy("qty")}>QTY</th>
               <th onClick={() => sortBy("weight")}>Weight(g)</th>
+              <th onClick={() => sortBy("category")}>Category</th>
               <th />
             </tr>
           </thead>
           <tbody>
             {stocks.map(stockItem => (
               <tr>
-                {/* {(d = new Date(stockItem.pkd))} */}
-
                 <td>{stockItem.id}</td>
                 <td>{stockItem.name}</td>
                 <td>
@@ -53,6 +52,7 @@ class StocksList extends Component {
                 <td>{stockItem.reason}</td>
                 <td>{stockItem.qty}</td>
                 <td>{stockItem.weight}</td>
+                <td>{stockItem.category}</td>
               </tr>
             ))}
           </tbody>
@@ -73,7 +73,8 @@ class StocksList extends Component {
             <span>Rs.</span>
             {value}
           </h5>
-          <button onClick={() => handleClaim()}>Claim</button>
+          <a href="/claims/new">Claim</a>
+          {/* <button onClick={() => handleClaim()}>Claim</button> */}
         </div>
       </div>
     );
