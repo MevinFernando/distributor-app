@@ -3,8 +3,6 @@ import axios from "axios";
 import ReturnItem from "./returnItem.jsx";
 import ReturnList from "./returnList.jsx";
 
-axios.defaults.baseURL = "http://localhost:5000" || process.env.baseURL;
-
 class Returns extends Component {
   state = {
     returns: [],
@@ -22,14 +20,11 @@ class Returns extends Component {
   handleStatusUpdate = returnItem => {
     const currentStatus = returnItem.status[0].code;
     var code;
-    if (currentStatus === "10") code = "20";
-    else if (currentStatus === "30") code = "40";
+    if (currentStatus == "10") code = "20";
+    else if (currentStatus == "30") code = "40";
     else return;
     axios
-      .put(
-        "http://localhost:5000/api/returns/" + returnItem.returnId + "/status",
-        { code }
-      )
+      .put("/api/returns/" + returnItem.returnId + "/status", { code })
       .then(result => {
         axios.get("/api/returns").then(res => {
           console.log(res.data);
