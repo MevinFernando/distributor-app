@@ -16,7 +16,7 @@ import Claims from "./components/claims";
 
 //axios.defaults.baseURL ="http://localhost:5000" || "http://hulrevlog.herokuapp.com";
 
-axios.defaults.baseURL = "http://distributorapp.herokuapp.com";
+axios.defaults.baseURL = "http://hulrevlog.herokuapp.com";
 
 function App() {
   return (
