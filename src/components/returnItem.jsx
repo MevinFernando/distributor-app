@@ -72,7 +72,7 @@ class ReturnItem extends Component {
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Time</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -80,7 +80,6 @@ class ReturnItem extends Component {
                 <tr>
                   <td>{stat.description}</td>
                   <td>{stat.time.slice(0, 16)}</td>
-                  <td>{stat.code}</td>
                 </tr>
               ))}
             </tbody>
@@ -110,10 +109,14 @@ class ReturnItem extends Component {
               </button>
 
               <input
-                className="form-input"
+                className="form"
                 id="no_days"
-                type="text"
-                placeholder="Default (n+2) Days"
+                type="number"
+                min="1"
+                max="7"
+                style={{ minWidth: "100" }}
+                placeholder="2"
+                readonly
               />
             </div>
           </div>

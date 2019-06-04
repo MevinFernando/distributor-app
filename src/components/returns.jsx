@@ -9,10 +9,10 @@ class Returns extends Component {
     returnItem: {},
     show: 0,
     pos: -1,
-    filter: "10"
+    filter: "0"
   };
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get("/api/returns").then(res => {
       console.log(res.data);
       this.setState({ returns: res.data });
@@ -61,18 +61,7 @@ class Returns extends Component {
 
   handleFilter = e => {
     console.log(e.target);
-    if (e.target.value == "10") {
-      this.setState({ filter: "10" });
-    } else if (e.target.value == "20") {
-      this.setState({ filter: "20" });
-    } else if (e.target.value == "30") {
-      this.setState({ filter: "30" });
-    } else if (e.target.value == "40") {
-      this.setState({ filter: "40" });
-    } else if (e.target.value == "50") {
-      this.setState({ filter: "50" });
-    }
-    return;
+    this.setState({ filter: e.target.value });
   };
 
   render() {
@@ -83,7 +72,9 @@ class Returns extends Component {
             {this.state.show === 0 ? (
               <ReturnList
                 returns={this.state.returns.filter(
-                  returnItem => returnItem.status[0].code == this.state.filter
+                  returnItem =>
+                    returnItem.status[0].code == this.state.filter ||
+                    this.state.filter == "0"
                 )}
                 handleViewMore={this.handleViewMore}
                 sortBy={this.sortBy}
@@ -144,6 +135,15 @@ class Returns extends Component {
                 onClick={this.handleFilter}
               />
               <label htmlFor="">Audited At RS</label>
+              <br />
+              <input
+                className="m-2"
+                type="radio"
+                name="filter"
+                value="0"
+                onClick={this.handleFilter}
+              />
+              <label htmlFor="">All</label>
             </div>
             <div className="card-header">
               <h4 className="card-title">Selected</h4>
