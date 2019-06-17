@@ -10,7 +10,7 @@ class ReturnList extends Component {
     const { returns, sortBy } = this.props;
 
     return (
-      <div className="container">
+      <React.Fragment>
         <div className="card-header">
           <h3 className="mb-0">Active Returns</h3>
         </div>
@@ -45,7 +45,7 @@ class ReturnList extends Component {
             ))}
           </tbody>
         </table>
-      </div>
+      </React.Fragment>
     );
   }
 }

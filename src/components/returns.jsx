@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReturnItem from "./returnItem.jsx";
 import ReturnList from "./returnList.jsx";
+import returnListFilter from "./returnListFilter";
+import ReturnListFilter from "./returnListFilter";
 
 class Returns extends Component {
   state = {
@@ -89,62 +91,8 @@ class Returns extends Component {
           </div>
 
           <div className="col-3 ">
-            <div className="card-header">
-              <h4 className="card-title">Filter</h4>
-              <input
-                className="m-2"
-                type="radio"
-                name="filter"
-                value="10"
-                onClick={this.handleFilter}
-              />
-              <label htmlFor="">Return Requested</label>
-              <br />
-              <input
-                className="m-2"
-                type="radio"
-                name="filter"
-                value="20"
-                onClick={this.handleFilter}
-              />
-              <label htmlFor="">Scheduled For Pickup</label>
-              <br />
-              <input
-                className="m-2"
-                type="radio"
-                name="filter"
-                value="30"
-                onClick={this.handleFilter}
-              />
-              <label htmlFor="">Picked Up</label>
-              <br />
-              <input
-                className="m-2"
-                type="radio"
-                name="filter"
-                value="40"
-                onClick={this.handleFilter}
-              />
-              <label htmlFor="">Reached RS</label>
-              <br />
-              <input
-                className="m-2"
-                type="radio"
-                name="filter"
-                value="50"
-                onClick={this.handleFilter}
-              />
-              <label htmlFor="">Audited At RS</label>
-              <br />
-              <input
-                className="m-2"
-                type="radio"
-                name="filter"
-                value="0"
-                onClick={this.handleFilter}
-              />
-              <label htmlFor="">All</label>
-            </div>
+            <ReturnListFilter handleFilter={this.handleFilter} />
+
             <div className="card-header">
               <h4 className="card-title">Selected</h4>
               <h3>

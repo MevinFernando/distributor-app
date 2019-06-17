@@ -15,9 +15,10 @@ import NewClaim from "./components/newClaim";
 import Claims from "./components/claims";
 import Pickups from "./components/pickups";
 
-//axios.defaults.baseURL ="http://localhost:5000" || "http://hulrevlog.herokuapp.com";
+axios.defaults.baseURL =
+  "http://localhost:5000" || "http://hulrevlog.herokuapp.com";
 
-axios.defaults.baseURL = "http://hulrevlog.herokuapp.com";
+//axios.defaults.baseURL = "http://hulrevlog.herokuapp.com";
 
 function App() {
   return (

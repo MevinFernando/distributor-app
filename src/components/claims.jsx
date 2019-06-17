@@ -6,23 +6,31 @@ class Claims extends Component {
     claims: {}
   };
   componentWillMount() {
-    axios.get("/api/distributors/claims/123456").then(res => {
+    axios.get("/api/claims/123456").then(res => {
       console.log(res.data);
       this.setState({ claims: res.data });
     });
   }
 
   setStatusLabel = () => {
-    if (this.state.claims.status === "50") {
+    if (this.state.claims.status === "60") {
       return "Not Approved";
-    } else if (this.state.claims.status === "60") {
+    } else if (this.state.claims.status === "70") {
       return "Approved";
     }
   };
 
   render() {
     const claims = this.state.claims;
-
+    if (claims == null) {
+      return (
+        <div className="container text-center ">
+          <div className="card-header">
+            <h4 className="card-title m-10">No Claims For Current Month</h4>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="container">
         <div className="card">

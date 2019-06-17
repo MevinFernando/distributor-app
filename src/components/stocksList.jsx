@@ -37,6 +37,7 @@ class StocksList extends Component {
               <th onClick={() => sortBy("qty")}>QTY</th>
               <th onClick={() => sortBy("weight")}>Weight(g)</th>
               <th onClick={() => sortBy("category")}>Category</th>
+              <th onClick={() => sortBy("type")}>Type</th>
               <th />
             </tr>
           </thead>
@@ -52,6 +53,7 @@ class StocksList extends Component {
                 <td>{stockItem.qty}</td>
                 <td>{stockItem.weight}</td>
                 <td>{stockItem.category}</td>
+                <td>{stockItem.type}</td>
               </tr>
             ))}
           </tbody>

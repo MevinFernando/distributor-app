@@ -28,15 +28,20 @@ class ReturnItem extends Component {
     const { returnItem } = this.props;
     // const { items, status } = returnItem;
     return (
-      <div className="container">
+      <React.Fragment>
         <div className="row">
           <h5>
             <span className="text-muted ">Return Id: </span>
             {returnItem.returnId}
           </h5>
+
           <h5>
             <span className="text-muted m-2">Retailer Name: </span>
             {returnItem.retailerName}
+          </h5>
+          <h5>
+            <span className="text-muted m-2">Return Date: </span>
+            {returnItem.returnDate.slice(0, 15)}
           </h5>
         </div>
         <div className="row">
@@ -116,12 +121,13 @@ class ReturnItem extends Component {
                 max="7"
                 style={{ minWidth: "100" }}
                 placeholder="2"
+                value="2"
                 readonly
               />
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -10,35 +10,27 @@ class NewClaim extends Component {
       weight: 0,
       value: 0,
       damagedValue: 0
-    },
-    distributorDetails: {}
+    }
   };
 
   componentWillMount() {
-    axios.get("/api/distributors/claims/new/123456").then(res => {
+    axios.get("/api/claims/123456/generate").then(res => {
       console.log(res.data);
       this.setState({ claimDetails: res.data });
-      axios.get("api/distributors/123456").then(result => {
-        console.log(result.data);
-        this.setState({ distributorDetails: result.data });
-      });
     });
   }
 
   handleClaim = () => {
     //console.log("logged");
     axios
-      .post("/api/distributors/claims/new/123456", {
-        claimDetails: this.state.claimDetails,
-        distributorDetails: this.state.distributorDetails
-      })
+      .post("/api/claims/123456/generate", {})
       .then(() =>
         axios
-          .get("/api/distributors/claim-pdf/123456", { responseType: "blob" })
+          .get("/api/claims/123456/pdf", { responseType: "blob" })
 
           .then(res => {
             const pdfBlob = new Blob([res.data], { type: "application/pdf " });
-            saveAs(pdfBlob, "claim-details.pdf");
+            saveAs(pdfBlob, "123456_claim-details.pdf");
           })
       )
       .catch(err => {
@@ -56,17 +48,17 @@ class NewClaim extends Component {
         <div className="row">
           <div className="col">
             <b>RS Id:</b>
-            {this.state.distributorDetails.distributorId}
+            {this.state.claimDetails.rsId}
           </div>
           <div className="col">
             <b>RS Name:</b>
-            {this.state.distributorDetails.name}
+            {this.state.claimDetails.name}
           </div>
         </div>
         <div className="row">
           <div className="col">
             <b>Supplier Id:</b>
-            {this.state.distributorDetails.supplierId}
+            {this.state.claimDetails.supplierId}
           </div>
           <div className="col">
             <b>Date:</b>
@@ -86,9 +78,9 @@ class NewClaim extends Component {
               <th>TUR</th>
               <th>Reason</th>
               <th>Tot. Taxable Amt</th>
-              <th>CGST (9%)</th>
+              {/* <th>CGST (9%)</th>
               <th>SGST (9%)</th>
-              <th>Tot. Amt</th>
+              <th>Tot. Amt</th> */}
             </tr>
           </thead>
           <tbody>
@@ -96,18 +88,16 @@ class NewClaim extends Component {
               <tr>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>
-                  {item.pkd.slice(4, 7)}/{item.pkd.slice(11, 16)}
-                </td>
+                <td>{item.pkd}</td>
                 <td>{item.qty}</td>
                 <td>{item.weight}</td>
                 <td>{item.mrp}</td>
                 <td>{item.tur}</td>
                 <td>{item.reason}</td>
                 <td>{item.tot_tax_amt}</td>
-                <td>{item.cgst}</td>
+                {/* <td>{item.cgst}</td>
                 <td>{item.sgst}</td>
-                <td>{item.tot_amt}</td>
+                <td>{item.tot_amt}</td> */}
               </tr>
             ))}
             <tr className="align-center">
