@@ -49,6 +49,19 @@ class Returns extends Component {
     else if (this.state.show === 1) this.setState({ show: 0, pos: -1 });
   };
 
+  handleDelete = id => {
+    axios
+      .delete("/api/returns/" + id)
+      .then(result => {
+        axios.get("/api/returns").then(res => {
+          console.log(res.data);
+          this.setState({ returns: res.data });
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   compareBy = key => (a, b) => {
     if (a[key] < b[key]) return -1;
     if (a[key] > b[key]) return 1;
@@ -62,60 +75,64 @@ class Returns extends Component {
   };
 
   handleFilter = e => {
-    console.log(e.target);
+    //console.log(e.target);
     this.setState({ filter: e.target.value });
+    console.log(this.state.filter);
   };
 
   render() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-9">
-            {this.state.show === 0 ? (
+        {this.state.show === 0 ? (
+          <div className="row">
+            <div className="col-9">
               <ReturnList
                 returns={this.state.returns.filter(
                   returnItem =>
                     returnItem.status[0].code == this.state.filter ||
-                    this.state.filter == "0"
+                    this.state.filter == 0
                 )}
+                //returns={this.state.returns}
                 handleViewMore={this.handleViewMore}
+                handleDelete={this.handleDelete}
                 sortBy={this.sortBy}
               />
-            ) : (
-              <ReturnItem
-                returnItem={this.state.returns[this.state.pos]}
-                handleViewMore={this.handleViewMore}
-                handleStatusUpdate={this.handleStatusUpdate}
-              />
-            )}
-          </div>
-
-          <div className="col-3 ">
-            <ReturnListFilter handleFilter={this.handleFilter} />
-
-            <div className="card-header">
-              <h4 className="card-title">Selected</h4>
-              <h3>
-                <span class="badge badge-pill badge-primary m-2">
-                  {
-                    this.state.returns.filter(
-                      returnItem =>
-                        returnItem.status[0].code == this.state.filter
-                    ).length
-                  }
-                </span>
-              </h3>
             </div>
-            <div className="card-header">
-              <h4 className="card-title">Overall</h4>
-              <h3>
-                <span class="badge badge-pill badge-primary m-2">
-                  {this.state.returns.length}
-                </span>
-              </h3>
+
+            <div className="col-3 ">
+              <ReturnListFilter handleFilter={this.handleFilter} />
+
+              <div className="card-header">
+                <h4 className="card-title">Selected</h4>
+                <h3>
+                  <span class="badge badge-pill badge-primary m-2">
+                    {
+                      this.state.returns.filter(
+                        returnItem =>
+                          returnItem.status[0].code == this.state.filter ||
+                          this.state.filter == 0
+                      ).length
+                    }
+                  </span>
+                </h3>
+              </div>
+              <div className="card-header">
+                <h4 className="card-title">Overall</h4>
+                <h3>
+                  <span class="badge badge-pill badge-primary m-2">
+                    {this.state.returns.length}
+                  </span>
+                </h3>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <ReturnItem
+            returnItem={this.state.returns[this.state.pos]}
+            handleViewMore={this.handleViewMore}
+            handleStatusUpdate={this.handleStatusUpdate}
+          />
+        )}
       </div>
     );
   }

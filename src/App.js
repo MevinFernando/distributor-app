@@ -14,6 +14,7 @@ import LoginForm from "./components/loginForm";
 import NewClaim from "./components/newClaim";
 import Claims from "./components/claims";
 import Pickups from "./components/pickups";
+import Loading from "./components/pages/Loading";
 
 axios.defaults.baseURL =
   "http://localhost:5000" || "http://hulrevlog.herokuapp.com";

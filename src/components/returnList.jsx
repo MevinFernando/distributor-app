@@ -6,7 +6,7 @@ class ReturnList extends Component {
   componentDidMount() {}
 
   render() {
-    console.log(this.props);
+    console.log(this.props.returns);
     const { returns, sortBy } = this.props;
 
     return (
@@ -39,6 +39,13 @@ class ReturnList extends Component {
                     }
                   >
                     View More
+                  </button>
+                  <button
+                    className="btn btn-sm
+                    btn-danger mx-3"
+                    onClick={() => this.props.handleDelete(returnItem.returnId)}
+                  >
+                    <i class="fas fa-trash-alt" />
                   </button>
                 </td>
               </tr>

@@ -28,11 +28,13 @@ class Stocks extends Component {
     this.setState({ stocks: arrayCopy });
   };
 
+  
+
   render() {
     return (
       <React.Fragment>
         <div className="container">
-          <StocksList stocks={this.state.stocks} sortBy={this.sortBy} />
+          <StocksList stocks={this.state.stocks} sortBy={this.sortBy} deletestock={this.deletestock}  />
         </div>
       </React.Fragment>
     );
