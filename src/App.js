@@ -1,25 +1,25 @@
-import React from "react";
-import "./App.css";
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import React from 'react';
+import './App.css';
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import axios from "axios";
-import Returns from "./components/returns";
-import ReturnItem from "./components/returnItem";
-import NotFound from "./components/notFound";
-import Header from "./components/layout/header";
-import About from "./components/pages/about";
-import Home from "./components/home";
-import Stocks from "./components/stocks";
-import LoginForm from "./components/loginForm";
-import NewClaim from "./components/newClaim";
-import Claims from "./components/claims";
-import Pickups from "./components/pickups";
-import Loading from "./components/pages/Loading";
+import axios from 'axios';
+import Returns from './components/returns';
+import ReturnItem from './components/returnItem';
+import NotFound from './components/notFound';
+import Header from './components/layout/header';
+import About from './components/pages/about';
+import Home from './components/home';
+import Stocks from './components/stocks';
+import LoginForm from './components/loginForm';
+import NewClaim from './components/newClaim';
+import Claims from './components/claims';
+import Pickups from './components/pickups';
+import Loading from './components/pages/Loading';
 
 axios.defaults.baseURL =
-  "http://localhost:5000" || "http://hulrevlog.herokuapp.com";
+  'http://localhost:5000' || 'http://hulrevlog.herokuapp.com';
 
-//axios.defaults.baseURL = "http://hulrevlog.herokuapp.com";
+//axios.defaults.baseURL = "http://hulrevlogtest.herokuapp.com";
 
 function App() {
   return (

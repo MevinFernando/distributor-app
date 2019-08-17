@@ -1,23 +1,25 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class Pickups extends Component {
   state = {
-    pickups: []
+    pickups: [],
+    keyword: ''
   };
 
   componentWillMount() {
-    axios.get("/api/pickups/1").then(res => {
+    axios.get('/api/pickups/').then(res => {
       console.log(res.data);
       this.setState({ pickups: res.data });
     });
   }
 
   handleInputChange = e => {
-    axios.get("/api/pickups/" + e.target.value).then(res => {
-      console.log(res.data);
-      this.setState({ pickups: res.data });
-    });
+    // axios.get('/api/pickups/' + e.target.value).then(res => {
+    //   console.log(res.data);
+    //   this.setState({ pickups: res.data });
+    // });
+    this.setState({ pickups: e.target.value });
   };
 
   render() {
@@ -26,7 +28,7 @@ class Pickups extends Component {
     if (pickups.length == 0) {
       return (
         <div className="container text-center ">
-          <div className="card-header">
+          {/* <div className="card-header">
             <h4>Delivery Person ID</h4>
             <input
               type="text"
@@ -35,7 +37,7 @@ class Pickups extends Component {
               placeholder="Enter ID"
               onChange={this.handleInputChange}
             />
-          </div>
+          </div> */}
           <h4 className="card-header m-10">No Pickups Scheduled for Today</h4>
         </div>
       );
