@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import axios from "axios";
-import ReturnItem from "./returnItem.jsx";
-import ReturnList from "./returnList.jsx";
-import returnListFilter from "./returnListFilter";
-import ReturnListFilter from "./returnListFilter";
+import React, { Component } from 'react';
+import axios from 'axios';
+import ReturnItem from './returnItem.jsx';
+import ReturnList from './returnList.jsx';
+import returnListFilter from './returnListFilter';
+import ReturnListFilter from './returnListFilter';
 
 class Returns extends Component {
   state = {
@@ -11,11 +11,11 @@ class Returns extends Component {
     returnItem: {},
     show: 0,
     pos: -1,
-    filter: "0"
+    filter: '0'
   };
 
   componentDidMount() {
-    axios.get("/api/returns").then(res => {
+    axios.get('/api/returns').then(res => {
       console.log(res.data);
       this.setState({ returns: res.data });
     });
@@ -24,12 +24,12 @@ class Returns extends Component {
     console.log(no_days);
     const currentStatus = returnItem.status[0].code;
     var code;
-    if (currentStatus == "10") code = "20";
+    if (currentStatus == '10') code = '20';
     else return;
     axios
-      .put("/api/returns/" + returnItem.returnId + "/status", { code, no_days })
+      .put('/api/returns/' + returnItem.returnId + '/status', { code, no_days })
       .then(result => {
-        axios.get("/api/returns").then(res => {
+        axios.get('/api/returns').then(res => {
           console.log(res.data);
           this.setState({ returns: res.data });
         });
@@ -51,9 +51,9 @@ class Returns extends Component {
 
   handleDelete = id => {
     axios
-      .delete("/api/returns/" + id)
+      .delete('/api/returns/' + id)
       .then(result => {
-        axios.get("/api/returns").then(res => {
+        axios.get('/api/returns').then(res => {
           console.log(res.data);
           this.setState({ returns: res.data });
         });
@@ -86,6 +86,9 @@ class Returns extends Component {
         {this.state.show === 0 ? (
           <div className="row">
             <div className="col-9">
+              <div className="card-header">
+                <h3 className="mb-0">Active Returns</h3>
+              </div>
               <ReturnList
                 returns={this.state.returns.filter(
                   returnItem =>

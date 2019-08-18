@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ReturnList extends Component {
   state = {};
@@ -11,15 +12,12 @@ class ReturnList extends Component {
 
     return (
       <React.Fragment>
-        <div className="card-header">
-          <h3 className="mb-0">Active Returns</h3>
-        </div>
         <table className="table table-hover">
           <thead>
             <tr>
-              <th onClick={() => sortBy("returnId")}>Return Id</th>
-              <th onClick={() => sortBy("retailerId")}>Retailer Name</th>
-              <th onClick={() => sortBy("status")}>Status</th>
+              <th onClick={() => sortBy('returnId')}>Return Id</th>
+              <th onClick={() => sortBy('retailerId')}>Retailer Name</th>
+              <th onClick={() => sortBy('status')}>Status</th>
               <th />
             </tr>
           </thead>
@@ -27,10 +25,14 @@ class ReturnList extends Component {
             {returns.map(returnItem => (
               <tr>
                 <td>{returnItem.returnId}</td>
-                <td>{returnItem.retailerName}</td>
+                <td>
+                  <Link to={'/retailers/' + returnItem.retailerId}>
+                    {returnItem.retailerName}
+                  </Link>
+                </td>
                 <td>{returnItem.status[0].description}</td>
                 <td>
-                  {" "}
+                  {' '}
                   <button
                     className="btn btn-sm
                     btn-primary"
@@ -42,7 +44,7 @@ class ReturnList extends Component {
                   </button>
                   <button
                     className="btn btn-sm
-                    btn-danger mx-3"
+                    btn-outline-danger mx-3 "
                     onClick={() => this.props.handleDelete(returnItem.returnId)}
                   >
                     <i class="fas fa-trash-alt" />

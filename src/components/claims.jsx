@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import axios from "axios";
-import ClaimItems from "./claimItems";
+import React, { Component } from 'react';
+import axios from 'axios';
+import ClaimItems from './claimItems';
 
 class Claims extends Component {
   state = {
@@ -9,8 +9,8 @@ class Claims extends Component {
     show: 0
   };
 
-  componentWillMount() {
-    axios.get("/api/claims/123456").then(res => {
+  componentDidMount() {
+    axios.get('/api/claims/123456').then(res => {
       console.log(res.data);
       this.setState({ claims: res.data });
     });
@@ -26,15 +26,15 @@ class Claims extends Component {
   };
 
   setStatusLabel = () => {
-    if (this.state.claims.status === "60") {
-      return "Not Approved";
-    } else if (this.state.claims.status === "70") {
-      return "Approved";
+    if (this.state.claims.status === '60') {
+      return 'Not Approved';
+    } else if (this.state.claims.status === '70') {
+      return 'Approved';
     }
   };
 
   deleteClaim = () => {
-    axios.delete("/api/delete/123456").then(res => {
+    axios.delete('/api/delete/123456').then(res => {
       console.log(res.data);
       this.setState({ claims: res.data });
     });

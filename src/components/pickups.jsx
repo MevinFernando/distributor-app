@@ -7,50 +7,34 @@ class Pickups extends Component {
     keyword: ''
   };
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get('/api/pickups/').then(res => {
-      console.log(res.data);
       this.setState({ pickups: res.data });
     });
   }
 
   handleInputChange = e => {
-    // axios.get('/api/pickups/' + e.target.value).then(res => {
-    //   console.log(res.data);
-    //   this.setState({ pickups: res.data });
-    // });
-    this.setState({ pickups: e.target.value });
+    this.setState({ keyword: e.target.value });
   };
 
   render() {
     const pickups = this.state.pickups;
-    console.log(pickups);
     if (pickups.length == 0) {
       return (
         <div className="container text-center ">
-          {/* <div className="card-header">
-            <h4>Delivery Person ID</h4>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Enter ID"
-              onChange={this.handleInputChange}
-            />
-          </div> */}
           <h4 className="card-header m-10">No Pickups Scheduled for Today</h4>
         </div>
       );
     }
     return (
       <div className="container">
-        <div className="card-header">
-          <h4>Delivery Person ID</h4>
+        <div className="card-header text-center">
+          <h4>Pickups</h4>
           <input
             type="text"
             name=""
             id=""
-            placeholder="Enter ID"
+            placeholder="Enter Beat Name"
             onChange={this.handleInputChange}
           />
         </div>
@@ -64,14 +48,29 @@ class Pickups extends Component {
             </tr>
           </thead>
           <tbody>
-            {pickups.map(pickup => (
-              <tr>
-                <td>{pickup.pickupId}</td>
-                <td>{pickup.returnId}</td>
-                <td>{pickup.retailerId}</td>
-                <td>{pickup.packages}</td>
-              </tr>
-            ))}
+            {this.state.keyword.length > 0 &&
+              pickups.map(pickup => {
+                return pickup.pickupId.includes(this.state.keyword) ? (
+                  <tr>
+                    <td>{pickup.pickupId}</td>
+                    <td>{pickup.returnId}</td>
+                    <td>{pickup.retailerId}</td>
+                    <td>{pickup.packages}</td>
+                  </tr>
+                ) : null;
+              })}
+
+            {this.state.keyword.length == 0 &&
+              pickups.map(pickup => {
+                return (
+                  <tr>
+                    <td>{pickup.pickupId}</td>
+                    <td>{pickup.returnId}</td>
+                    <td>{pickup.retailerId}</td>
+                    <td>{pickup.packages}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
