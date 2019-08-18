@@ -53,6 +53,9 @@ class Retailer extends Component {
           <ReturnHistory returns={this.state.history} />
         </div>
       );
+    else {
+      return null;
+    }
   }
 }
 
